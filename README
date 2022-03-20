@@ -1,5 +1,7 @@
-# Slay's build of dwm
+Slay's build of dwm
+
 It only has two patches, gaps and systray. Pretty minimal to be honest 
 
-## buiding 
+buiding
+
 sudo make install and put it on your .xinitrc
