@@ -1,3 +1,6 @@
+/* Se a vida fosse boa ela se chamaria Sylphyn. */
+
+
 /* See LICENSE file for copyright and license details. */
 
 /*Constantes */
@@ -15,13 +18,13 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "cantarell:size=12" };
-static const char dmenufont[]       = "cantarell:size=12";
+static const char *fonts[]          = { "cantarell:size=10" };
+static const char dmenufont[]       = "cantarell:size=10";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#000000";
 static const char col_gray3[]       = "#ffffff";
-static const char col_gray4[]       = "#ffffff";
-static const char col_cyan[]        = "#0400ff";
+static const char col_gray4[]       = "#000000";
+static const char col_cyan[]        = "#01fdff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -29,7 +32,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "か" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -70,10 +73,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
-static const char *libre[] = { "librewolf", NULL };
-static const char *flame[] = { "flameshot", NULL };
+static const char *chrome[] = { "chromium", NULL };
 static const char *pcman[] = { "pcmanfm", NULL };
 static const char *element[] = { "element-desktop", NULL };
+static const char *discord[] = { "discord", NULL };
 static const char *xkill[] = { "xkill", NULL };
 static const char *slock[] = { "slock", NULL };
 static const char *freetube[] = { "freetube", NULL };
@@ -82,16 +85,16 @@ static const char *pavu[] = { "pavucontrol", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY|ShiftMask,             XK_u,      spawn,         SHCMD(TERMINAL " htop") },
-	{ MODKEY,                       XK_n,      spawn,         SHCMD(TERMINAL " ranger") },
+	{ MODKEY,                       XK_n,      spawn,         SHCMD(TERMINAL " lf") },
 	{ MODKEY,                       XK_m,      spawn,         SHCMD(TERMINAL " ncmpcpp") },
 	{ MODKEY|ShiftMask,		XK_p,      spawn,          {.v = pavu     } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = freetube } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = xkill } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = element } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = discord } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = element } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = pcman } },
-	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = flame } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = libre } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = chrome } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = flameshot } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -107,8 +110,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
 	{ MODKEY,                       XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_6,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_6,      tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
@@ -121,6 +124,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
         TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+        TAGKEYS(                        XK_7,                      6)
+        TAGKEYS(                        XK_8,                      7)
+        TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
 };
 
